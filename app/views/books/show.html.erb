@@ -9,15 +9,19 @@
         <tbody>
           <tr>
             <td>
-              <%= attachment_image_tag @book.user, :profile_image, format: 'jpeg', size: "40x40", fallback: "no_image.jpg" %><br />
-              <%= link_to user_path(@book.user) do %>
-                <%= @book.user.name %>
+              <%= attachment_image_tag @book_show.user, :profile_image, format: 'jpeg', size: "40x40", fallback: "no_image.jpg" %><br />
+              <%= link_to user_path(@book_show.user) do %>
+                <%= @book_show.user.name %>
               <% end %>
             </td>
-            <td><%= @book.title %></td>
-            <td><%= @book.body %></td>
-            <td><%= link_to "Edit", edit_book_path, class: "btn btn-sm btn-success" %></td>
-            <td><%= link_to "Destroy", book_path, method: :delete, class: "btn btn-sm btn-danger",data: { confirm: "本当に消しますか？" }  %></td>
+            <td><%= @book_show.title %></td>
+            <td><%= @book_show.body %></td>
+            <!--ログインユーザーと投稿のユーザーが一致している場合のみ表示-->
+            <% if @book_show.user_id == current_user.id %>
+              <td><%= link_to "Edit", edit_book_path, class: "btn btn-sm btn-success" %></td>
+              <td><%= link_to "Destroy", book_path, method: :delete, class: "btn btn-sm btn-danger",data: { confirm: "本当に消しますか？" }  %></td>
+            <% end %>
+            <!-------------------------------------------------------------->
           </tr>
         </tbody>
       </table>

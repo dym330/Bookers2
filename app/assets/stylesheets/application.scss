@@ -14,7 +14,11 @@
  *= require_self
  */
  @import "bootstrap";
- 
+
  div .field{
    margin-bottom: 10px;
+ }
+
+ .notice{
+  color: green;
  }
